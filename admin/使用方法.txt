@@ -1,0 +1,8 @@
+后台管理目录默认：admin。
+重新配置方法：
+1、在config/config.ini.php配置文件中找到“ADMIN_NAMESPACE”，设置成想要的目录名称（如“test”）。
+2、再将该目录（admin）重命名为前面设置的目录（如“test”命名规则只能为小写英文字母）。
+3、访问地址就变成了http://网站/后台目录/（如http://网站/test/）。
+4、robots.txt文件中增加，Disallow: /index.php?s=test* 和 Disallow: /test/（你也可以不写）。
+
+注意事项：config.ini.php不能用记事本等软件编辑，且只能保存编码为utf-8无BOM格式，否则会出大问题。

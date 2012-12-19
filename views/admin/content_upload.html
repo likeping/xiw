@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="{ADMIN_THEME}images/reset.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/system.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/dialog.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/main.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/switchbox.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{ADMIN_THEME}js/jquery.min.js"></script>
+<title>admin</title>
+</head>
+<body style="font-weight: normal;">
+<div class="subnav">
+	<div class="table-list">
+		<form method="post" action="" id="myform" name="myform" enctype="multipart/form-data">
+		<input name="filename" id="filename" type="hidden" value="{$fielname}">
+		<input name="size" id="size" type="hidden" value="{$size}">
+		<input name="admin" id="admin" type="hidden" value="{$admin}">
+		<div class="pad-10">
+			<div class="col-tab">
+				<table width="100%">
+				<tr>
+				    <td align="center"><input type="file" name="file" id="file" size="45" ></td>
+				</tr>
+				<tr>
+					<td align="right">{if $isimage}
+					{lang('a-con-51')}：<input type="text" class="input-text" style="width:32px;" name="width" value="{if $w}{$w}{/if}">&nbsp;X&nbsp;&nbsp;<input type="text" class="input-text" style="width:32px;" name="height" value="{if $h}{$h}{/if}">&nbsp;
+					{lang('a-con-52')} <input name="type" type="radio" value="0" checked> &nbsp; {lang('a-con-53')} <input name="type" type="radio" value="1">
+					&nbsp;
+					{/if}<input type="submit" class="button" value="{lang('a-upload')}" name="submit"></td>
+				</tr>
+				</table>
+				<div class="onShow">{$note}</div>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>

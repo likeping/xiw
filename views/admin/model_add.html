@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="{ADMIN_THEME}images/reset.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/system.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/dialog.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/main.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/switchbox.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{ADMIN_THEME}js/jquery.min.js"></script>
+<title>admin</title>
+</head>
+<body style="font-weight: normal;">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		<a href="{url('admin/model/index',  array('typeid'=>$typeid))}"><em>{lang('a-aut-14')}</em></a><span>|</span>
+		<a href="{url('admin/model/add',    array('typeid'=>$typeid))}" class="on"><em>{lang('a-add')}</em></a><span>|</span>
+		<a href="{url('admin/model/import', array('typeid'=>$typeid))}"><em>{lang('a-import')}</em></a><span>|</span>
+		<a href="{url('admin/model/cache',  array('typeid'=>$typeid))}"><em>{lang('a-cache')}</em></a>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<form action="" method="post">
+		<input name="modelid" type="hidden" value="{$data['modelid']}">
+		<table width="100%" class="table_form">
+		<tr>
+			<th width="200">{lang('a-mod-18')}： </th>
+			<td>{$typename[$typeid]}</td>
+		</tr>
+		<tr>
+			<th><font color="red">*</font> {lang('a-name')}： </th>
+			<td><input class="input-text" type="text" name="modelname" value="{$data['modelname']}" size="30"/></td>
+		</tr>
+		<tr>
+			<th><font color="red">*</font> {lang('a-mod-19')}： </th>
+			<td><input class="input-text" type="text" name="tablename" value="{$data['tablename']}" size="30" {if $data['modelid']}disabled{/if} /><div class="onShow">{lang('a-mod-20')}</div></td>
+		</tr>
+		{if $typeid != 2}
+		<tbody>
+		{if $typeid == 1}
+		<tr>
+			<th>{lang('a-mod-21')}：</th>
+			<td>
+			{loop $formmodel $t}
+			<input type="checkbox" value="{$t['modelid']}" name="join[]" {if in_array($t['modelid'], $join)}checked=""{else} {if in_array($t['modelid'], $joindata)}disabled=""{/if}{/if} /> {$t['modelname']}&nbsp;&nbsp;
+			{/loop}
+			<div class="onShow">{lang('a-mod-22')}</div>
+			</td>
+		</tr>
+		<tr>
+			<th>{lang('a-mod-23')}： </th>
+			<td><input class="input-text" type="text" name="categorytpl" value="{$data['categorytpl']}" size="30"/><div class="onShow">{lang('a-mod-28')}：category.html。</div></td>
+		</tr>
+		{else if $typeid == 3}
+		<tr>
+			<th>{lang('a-mod-24')}： </th>
+			<td><input class="input-text" type="text" name="categorytpl" value="{$data['categorytpl']}" size="30"/><div class="onShow">{lang('a-mod-28')}：post.html。</div></td>
+		</tr>
+		{/if}
+		<tr>
+			<th>{lang('a-mod-25')}： </th>
+			<td><input class="input-text" type="text" name="listtpl" value="{$data['listtpl']}" size="30"/><div class="onShow">{lang('a-mod-28')}：list.html。</div></td>
+		</tr>
+		<tr>
+			<th>{lang('a-mod-26')}： </th>
+			<td><input class="input-text" type="text" name="showtpl" value="{$data['showtpl']}" size="30"/><div class="onShow">{lang('a-mod-28')}：show.html。</div>
+			</td>
+		</tr>
+		</tbody>
+		{else}
+		<tr>
+			<th>{lang('a-mod-23')}：</th>
+			<td>
+			{loop $formmodel $t}
+			<input type="checkbox" value="{$t['modelid']}" name="join[]" {if in_array($t['modelid'], $join)}checked=""{else} {if in_array($t['modelid'], $joindata)}disabled=""{/if}{/if} /> {$t['modelname']}&nbsp;&nbsp;
+			{/loop}
+			<div class="onShow">{lang('a-mod-27')}</div>
+			</td>
+		</tr>
+		{/if}
+		<tr>
+			<th>&nbsp;</th>
+			<td><input class="button" type="submit" name="submit" value="{lang('a-submit')}" /></td>
+		</tr>
+		</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>

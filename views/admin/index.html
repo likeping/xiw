@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="off">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<title>{$SITE_NAME}{lang('admin')}</title>
+<link href="{ADMIN_THEME}images/reset.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/system.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/dialog.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{ADMIN_THEME}js/jquery.min.js"></script>
+<script type="text/javascript" src="{ADMIN_THEME}js/dialog.js"></script>
+<style  type="text/css">.ui_dialog_wrap{visibility:hidden}.ui_title_icon,.ui_content,.ui_dialog_icon,.ui_btns span{display:inline-block;*zoom:1;*display:inline}.ui_dialog{text-align:left;position:absolute;top:0}.ui_dialog table{border:0;margin:0;border-collapse:collapse}.ui_dialog td{padding:0}.ui_title_icon,.ui_dialog_icon{vertical-align:middle;_font-size:0}.ui_title_text{overflow:hidden;cursor:default}.ui_close{display:block;position:absolute;outline:none}.ui_content_wrap{text-align:center}.ui_content{margin:10px;text-align:left}.ui_iframe .ui_content{margin:0;*padding:0;display:block;height:100%;position:relative}.ui_iframe .ui_content iframe{border:none;overflow:auto}.ui_content_mask {visibility:hidden;width:100%;height:100%;position:absolute;top:0;left:0;background:#FFF;filter:alpha(opacity=0);opacity:0}.ui_bottom{position:relative}.ui_resize{position:absolute;right:0;bottom:0;z-index:1;cursor:nw-resize;_font-size:0}.ui_btns{text-align:right;white-space:nowrap}.ui_btns span{margin:5px 10px}.ui_btns button{cursor:pointer}* .ui_ie6_select_mask{position:absolute;top:0;left:0;z-index:-1;filter:alpha(opacity=0)}.ui_loading .ui_content_wrap{position:relative;min-width:9em;min-height:3.438em}.ui_loading .ui_btns{display:none}.ui_loading_tip{visibility:hidden;width:5em;height:1.2em;text-align:center;line-height:1.2em;position:absolute;top:50%;left:50%;margin:-0.6em 0 0 -2.5em}.ui_loading .ui_loading_tip,.ui_loading .ui_content_mask{visibility:visible}.ui_loading .ui_content_mask{filter:alpha(opacity=100);opacity:1}.ui_move .ui_title_text{cursor:move}.ui_page_move .ui_content_mask{visibility:visible}.ui_move_temp{visibility:hidden;position:absolute;cursor:move}.ui_move_temp div{height:100%}html>body .ui_fixed .ui_move_temp{position:fixed}html>body .ui_fixed .ui_dialog{position:fixed}* .ui_ie6_fixed{background:url(*) fixed}* .ui_ie6_fixed body{height:100%}* html .ui_fixed{width:100%;height:100%;position:absolute;left:expression(documentElement.scrollLeft+documentElement.clientWidth-this.offsetWidth);top:expression(documentElement.scrollTop+documentElement.clientHeight-this.offsetHeight)}* .ui_page_lock select,* .ui_page_lock .ui_ie6_select_mask{visibility:hidden}* .ui_page_lock .ui_content select{visibility:visible;}.ui_overlay{visibility:hidden;_display:none;position:fixed;top:0;left:0;width:100%;height:100%;filter:alpha(opacity=0);opacity:0;_overflow:hidden}.ui_lock .ui_overlay{visibility:visible;_display:block}.ui_overlay div{height:100%}* html body{margin:0}</style>
+</head>
+<body style="overflow:scroll;overflow-y:hidden">
+<div class="header" style="width: auto; ">
+	<div class="logo lf"></div>
+    <div class="rt">
+    	<div class="tab_style white cut_line text-r">
+        <a href="http://www.finecms.net" target="_blank">{lang('a-com-12')}</a><span>|</span>
+		<a href="http://bbs.finecms.net" target="_blank">{lang('a-com-13')}</a><span>|</span>
+		<a href="http://www.finecms.net/help/" target="_blank">{lang('a-com-14')}</a>
+        </div>
+        <div class="style_but"></div>
+    </div>
+    <div class="col-auto" style="overflow: visible">
+        <div class="log white cut_line">{lang('a-com-15')}！{$userinfo['username']}&nbsp;{if $userinfo['realname']}({$userinfo['realname']}){/if}<span>|</span>
+        <a href="javascript:;" onClick="logout();">[{lang('a-com-16')}]</a><span>|</span>
+    	<a href="{SITE_PATH}" target="_blank" id="site_homepage">{lang('a-com-17')}</a>
+    	</div>
+		<ul class="nav white" id="top_menu">
+		{loop $menu['top'] $k=>$t}
+		  <li id="_M{$k}" class="{if $k==0}on{/if} top_menu"><a href="javascript:_M({$k},{$t['select']},'{$t['url']}','{lang($t['name'])}')" hidefocus="true" style="outline:none;">{lang($t['name'])}</a></li>
+		{/loop}
+		</ul>
+    </div>
+</div>
+<div id="content" style="width: auto; ">
+	<div class="col-left left_menu">
+    	<div id="leftMain"></div>
+        <a href="javascript:;" id="openClose" style="outline-style: none; outline-color: invert; outline-width: medium; height: 539px; " hidefocus="hidefocus" class="open" title="open/close"><span class="hidden">open</span></a>
+    </div>
+	<div class="col-1 lf cat-menu" id="display_center_id" style="display:none" height="100%">
+	    <div class="content"></div>
+    </div>
+    <div class="col-auto mr8">
+		<div class="crumbs">
+			<div class="shortcut cu-span">
+			<a href="{url('admin/index/main')}" target="right"><span>{lang('a-men-8')}</span></a>
+			<a href="{url('admin/index/cache')}" target="right"><span>{lang('a-men-19')}</span></a>
+			<a href="{url('admin/index/updatemap')}" target="right"><span>{lang('a-men-53')}</span></a>
+			</div>
+			{lang('a-com-18')}：<span id="current_pos">{lang('a-com-8')}</span>
+		</div>
+		<div class="col-1">
+			<div class="content" style="position:relative; overflow:hidden">
+				<iframe name="right" id="rightMain" src="{url('admin/index/main')}" frameborder="false" scrolling="auto" style="border:none;" width="100%" allowtransparency="true"></iframe>
+			</div>
+		</div>
+    </div>
+</div>
+<ul class="tab-web-panel hidden" style="position: absolute; z-index: 999; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 255); left: 680px; top: 82px; display: none; background-position: initial initial; background-repeat: initial initial; ">
+  <li style="margin:0"></li>
+</ul>
+<div style="display:none;">
+   {loop $menu['top'] $k=>$t}
+   <div id="DIV_M{$k}">
+    {loop $menu['list'][$k] $name=>$n}
+    <h3 class="f14"><span class="switchs cu on"></span>{lang($name)}</h3>
+    <ul>
+    {loop $n $id=>$v}
+      <li id="_MP{$id}" class="sub_menu"><a {if isset($v['url']) && $v['url']}href="javascript:_MP({$id},'{$v['url']}', '{php echo isset($v['clz']) ? $v['clz'] : 0;}');"{/if} hidefocus="true" style="outline:none;">{if isset($v['sys'])}{$v['name']}{else}{lang($v['name'])}{/if}</a></li>
+    {/loop}
+    </ul>    
+    {/loop}
+    <script src="{ADMIN_THEME}js/switch.js"></script>
+  </div>
+  {/loop}
+</div>
+<div id="footer">
+<p class="txt-copy">&copy; 2011-{date('Y')}</p>
+<ul class="version_footer">
+	<li><strong>{CMS_NAME}</strong> {CMS_VERSION} <span id="finecms_version"></span> &nbsp;(Update:{CMS_UPDATE})</li>
+</ul>
+<p class="box-cms"><a class="fine-cms" href="http://www.finecms.net" target="_blank">FineCMS</a><a class="pow-by" href="http://www.finecms.net" target="_blank">powered by</a></p>
+</div>
+<script type="text/javascript" src="http://www.finecms.net/index.php?c=sys&a=version&id={CMS_VERSION}"></script>
+<script type="text/javascript"> 
+//左侧菜单
+//clientHeight-0; 空白值 iframe自适应高度
+$('#DIV_M0').clone().appendTo('#leftMain');
+function windowW(){
+	if($(window).width()<980){
+		$('.header').css('width',980+'px');
+		$('#content').css('width',980+'px');
+		$('body').attr('scroll','');
+		$('body').css('overflow','');
+	}
+}
+windowW();
+$(window).resize(function(){
+	if($(window).width()<980){
+		windowW();
+	}else{
+		$('.header').css('width','auto');
+		$('#content').css('width','auto');
+		$('body').attr('scroll','no');
+		$('body').css('overflow','hidden');
+	}
+});
+window.onresize = function(){
+	var heights = document.documentElement.clientHeight-160;
+	document.getElementById('rightMain').height = heights+30;
+	var openClose = $("#rightMain").height()+39;
+	$('#center_frame').height(openClose+9);
+	$("#openClose").height(openClose+30);	
+}
+window.onresize();
+//左侧开关
+$("#openClose").click(function(){
+	if($(this).data('clicknum')==1) {
+		$("html").removeClass("on");
+		$(".left_menu").removeClass("left_menu_on");
+		$(this).removeClass("close");
+		$(this).data('clicknum', 0);
+	} else {
+		$(".left_menu").addClass("left_menu_on");
+		$(this).addClass("close");
+		$("html").addClass("on");
+		$(this).data('clicknum', 1);
+	}
+	return false;
+});
+function _M(menuid, sid, targetUrl, name) {
+	$("#menuid").val(menuid);
+	$("#bigid").val(menuid);
+	var menu="#DIV_M"+menuid;
+	$('#leftMain').html("");
+	$(menu).clone().appendTo($("#leftMain"));
+	$('.top_menu').removeClass("on");
+	$('#_M'+menuid).addClass("on");
+	//显示左侧菜单，当点击顶部时，展开左侧
+	$(".left_menu").removeClass("left_menu_on");
+	$("#openClose").removeClass("close");
+	$("html").removeClass("on");
+	$("#openClose").data('clicknum', 0);
+	$("#current_pos").data('clicknum', 1);
+	$("#rightMain").attr('src', targetUrl);
+	$('#_MP'+sid).addClass("on fb blue");
+	$('#current_pos').html(name);
+}
+function _MP(id, targetUrl, clz) {
+	var title = $("#_MP"+id).find('a').html();
+	$("#current_pos").html(title);
+	$("#rightMain").attr('src', targetUrl);
+	$('.sub_menu').removeClass("on fb blue");
+	$('#_MP'+id).addClass("on fb blue");
+	if (clz==1) {
+	    window.top.art.dialog({ id:'clz',title:'loading',fixed:true,lock:false,content: '<img src="{ADMIN_THEME}images/onLoad.gif">' });
+	}
+}
+function logout(){
+	if (confirm("{lang('a-com-19')}"))
+	top.location = '{url("admin/login/logout/")}';
+	return false;
+}
+$('#_MP1').addClass("on fb blue");
+</script>
+</body>
+</html>

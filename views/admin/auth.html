@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="{ADMIN_THEME}images/reset.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/system.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/dialog.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/main.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/switchbox.css" rel="stylesheet" type="text/css" />
+<link href="{ADMIN_THEME}images/table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{ADMIN_THEME}js/jquery.min.js"></script>
+<script type="text/javascript">
+function del(id){
+	if(confirm('{lang('a-confirm')}')){
+		var url = "{url("admin/auth/del/",array("roleid"=>""))}"+id;
+		window.location.href=url;
+	}
+}
+</script>
+<title>admin</title>
+</head>
+<body style="font-weight: normal;">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		<a href="{url('admin/auth/')}" class="on"><em>{lang('a-aut-7')}</em></a><span>|</span>
+		<a href="{url('admin/auth/add')}"><em>{lang('a-aut-8')}</em></a><span>|</span>
+		<a href="{url('admin/auth/cache')}"><em>{lang('a-cache')}</em></a>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<table width="100%">
+		<thead>
+		<tr>
+			<th width="94">ID</th>
+			<th width="209" align="left">{lang('a-name')}</th>
+			<th width="303" align="left">{lang('a-desc')}</th>
+			<th align="left">{lang('a-option')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr height="25">
+			<td align="center">{$t['roleid']}</td>
+			<td align="left">{$t['rolename']}</td>
+			<td align="left">{$t['description']}</td>
+			<td align="left">
+			<a href="{url('admin/auth/list',array('roleid'=>$t['roleid']))}">{lang('a-aut-9')}</a> | 
+			<a href="{url('admin/user/index',array('roleid'=>$t['roleid']))}">{lang('a-aut-10')}</a> | 
+			<a href="{url('admin/auth/edit',array('roleid'=>$t['roleid']))}">{lang('a-edit')}</a> | 
+			<a href="javascript:del({$t['roleid']});">{lang('a-del')}</a>  
+			</td>
+		</tr>
+		{/loop}
+		<tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>
